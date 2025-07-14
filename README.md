@@ -8,27 +8,32 @@
 
 
 2. **install dependencies** 
-pip install -r requirements.txt
+
+```pip install -r requirements.txt
 pip install .
 
 
 3. **start server** 
-uvicorn server.main:app --reload
+
+```uvicorn server.main:app --reload
 
 
 4. **submit job** 
-qgjob submit \
+
+```qgjob submit \
   --org-id=qualgent \
   --app-version-id=xyz123 \
   --test=tests/onboarding.spec.js
 
 
 5. **check status** 
-qgjob status --job-id=<JOB_ID>
+
+```qgjob status --job-id=<JOB_ID>
 
 
 6. **Architecture Design** 
-graph LR
+
+```graph LR
   CLI[qgjob CLI] -->|HTTP POST /jobs| Server[Job Server (FastAPI)]
   Server -->|enqueue| Queue[In-Memory Queue]
   Scheduler[Background Scheduler] -->|group by app_version_id| Queue
